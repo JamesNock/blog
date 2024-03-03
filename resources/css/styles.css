@@ -1,0 +1,17 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@font-face{
+    font-family:goodtimes;
+    src:url(./fonts/goodtimes.eot);
+    src:url(./fonts/goodtimes.eot?iefix) format("eot"),url(./fonts/goodtimes.woff) format("woff"),url(./fonts/goodtimes.ttf) format("truetype"),url(./fonts/goodtimes.svg#webfont44PDl6Sr) format("svg");
+    font-weight:400;
+    font-style:normal}
+
+a {
+    text-decoration: underline;
+
+}
+
+

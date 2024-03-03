@@ -1,0 +1,25 @@
+title: Settings
+data:
+  site_name: "James Nock's Blog"
+  show_signup: false
+  social:
+    -
+      id: JPVMM9IL
+      name: Github
+      url: 'https://github.com/JamesNock'
+      icon: site/social-icons/github.svg
+    -
+      id: ltb9c77u
+      name: LinkedIn
+      url: 'https://www.linkedin.com/in/jamesmnock/'
+      icon: site/social-icons/linkedin.svg
+    -
+      id: GaMLMjUL
+      name: Twitter
+      url: 'https://www.twitter.com/JamesNockWebDev'
+      icon: site/social-icons/twitter.svg
+    -
+      id: EJ1b78NK
+      name: Facebook
+      url: 'https://www.facebook.com/JamesNockWeb'
+      icon: site/social-icons/facebook.svg

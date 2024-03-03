@@ -1,0 +1,14 @@
+name: James
+super: true
+id: b7341168-f9c6-4f0b-8ccc-8628e01f9a4c
+password_hash: $2y$10$pVNakWeHoQu9ALwQF/QCCODNBFWryhLFF57iVzlFZ2b9.e1/TtkUO
+preferences:
+  collections:
+    blog:
+      columns:
+        - title
+        - slug
+        - date
+        - author
+        - status
+        - hero_image

@@ -1,0 +1,12 @@
+<nav class="py-6 lg:py-12 text-center bg-cyan-jn">
+    <div class="flex items-center justify-center mb-6">
+        {{ settings:social }}
+            <a href="{{ $url }}" class="ml-4" aria-label="{{ $name }}" rel="noopener">
+                {{ svg :src="icon" class="h-6 w-6 hover:text-hot-pink" }}
+            </a>
+        {{ /settings:social }}
+    </div>
+    <p class="my-6"><a href="https://www.james-nock.co.uk/">Go to james-nock.co.uk</a></p>
+    <p class="text-sm mb-6"><a href="https://www.james-nock.co.uk/terms-and-privacy/">Terms &amp; Privacy</a></p>
+    <p class="text-sm">&copy; James Nock {{ $now | format("Y") }}</p>
+</nav>

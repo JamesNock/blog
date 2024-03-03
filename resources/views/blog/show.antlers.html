@@ -1,0 +1,45 @@
+<article class="max-w-5xl mx-auto px-3">
+    <img class="rounded-xl max-h-[512px] mx-auto" src="{{ $hero_image }}" alt="{{ $hero_image:alt }}">
+    <header class="mx-auto max-w-3xl">
+        <h1 class="text-2xl py-6 lg:py-12">{{ $title }}</h1>
+        {{ if $intro|strip_tags|length }}
+        {{ $intro }}
+        {{ /if }}
+    </header>
+    <section class="max-w-3xl mx-auto py-6 lg:py-12">
+        {{ main_content }}
+            {{ if $type == "text" }}
+                <div class="prose">{{ $text }}</div>
+            {{ elseif $type == "code_block" }}
+<pre class="language-{{ $mode ?? 'php' }} rounded"><code>{{ $code }}</code></pre>
+            {{ elseif $type == "image" }}
+                <figure>
+                    <img src="{{ $image }}" alt="{{ $caption }}" />
+                    <figcaption>{{ $caption }}</figcaption>
+                </figure>
+            {{ /if }}
+        {{ /main_content }}
+    </section>
+
+    <div class="my-12 flex items-center justify-center">
+        {{ if $author }}
+        <img src="{{ $author:avatar ?? $author:email | gravatar(160) }}" class="h-20 w-20 my-0 rounded-full mr-4">
+        {{ /if }}
+        <div class="text-left">
+            {{ if author }}
+            <div>
+                <a class="font-bold no-underline" href="/authors/{{ $author:handle }}">
+                        <span class="bg-clip-text text-transparent bg-gradient-to-r from-hot-pink to-purple-500">
+                            {{ $author:name }}
+                        </span>
+                </a>
+            </div>
+            {{ /if }}
+            <time datetime="{{ $date | format('Y-m-d') }}">{{ $date }}</time>
+        </div>
+    </div>
+
+    {{ if $settings:show_signup }}
+        {{ partial:sign-up}}
+    {{ /if }}
+</article>

@@ -1,0 +1,21 @@
+<nav x-data="{searching: false}" class="bg-cyan-jn">
+    <div class="max-w-5xl mx-auto px-3 py-3 flex items-center justify-between h-24">
+        <a href="/" class="font-bold text-white drop-shadow-xl text-3xl hover:text-hot-pink no-underline" x-show="! searching"><span class="font-brand">{{ settings:site_name }}</span></a>
+        <button class="hover:text-hot-pink transition-all duration-100 outline-none" @click="searching = true; $nextTick(() => { $refs.search.focus() })" aria-label="Search the site">
+            {{ svg src="search" class="w-12 h-12 text-white hover:text-hot-pink" }}
+        </button>
+        <form action="/search" x-show="searching" x-cloak class="flex-1">
+            <input
+                name="q"
+                type="text"
+                class="w-full outline-none px-2 py-1 ml-3 bg-cyan-jn"
+                placeholder="Search like the wind..."
+                x-on:blur="searching = false"
+                @keydown.enter="search"
+                @keydown.esc="searching = false"
+                x-show="searching"
+                x-ref="search"
+            />
+        </form>
+    </div>
+</nav>
