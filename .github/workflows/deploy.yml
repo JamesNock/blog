@@ -12,6 +12,11 @@ jobs:
       - name: Checkout main branch
         uses: actions/checkout@v4
 
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20.x"
+
       - name: Install SSH Key
         uses: shimataro/ssh-key-action@v2
         with:
@@ -24,3 +29,15 @@ jobs:
       - name: Deploy with rsync
         run: rsync -avz --delete . ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:newblog/
 
+      - name: Build site
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd ~/newblog
+            composer install
+            nvm use || nvm install $(cat .nvmrc)
+            npm install
+            npm run build
