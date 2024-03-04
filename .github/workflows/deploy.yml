@@ -36,8 +36,8 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            cp ~/envs/newblog/.env .
             cd ~/newblog
+            cp ~/envs/newblog/.env .
             composer install
             nvm use || nvm install $(cat .nvmrc)
             npm install
