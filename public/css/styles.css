@@ -714,6 +714,8 @@ video {
   margin-bottom: 4rem !important;
 }.mb-4 {
   margin-bottom: 1rem !important;
+}.mb-6 {
+  margin-bottom: 1.5rem !important;
 }.mb-8 {
   margin-bottom: 2rem !important;
 }.ml-3 {
@@ -726,12 +728,8 @@ video {
   margin-top: 0.75rem !important;
 }.mt-4 {
   margin-top: 1rem !important;
-}.mt-6 {
-  margin-top: 1.5rem !important;
 }.mt-8 {
   margin-top: 2rem !important;
-}.mb-6 {
-  margin-bottom: 1.5rem !important;
 }.block {
   display: block !important;
 }.flex {
@@ -860,8 +858,6 @@ video {
   padding-top: 3rem !important;
 }.pt-16 {
   padding-top: 4rem !important;
-}.pb-6 {
-  padding-bottom: 1.5rem !important;
 }.text-left {
   text-align: left !important;
 }.text-center {
@@ -938,9 +934,12 @@ video {
 }.ease-in-out {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
 }@font-face{
-    font-family:goodtimes;
+    font-family:'goodtimes';
     src:url(/fonts/goodtimes.eot?ea366059460b1901845ffb2cc94da166);
-    src:url(/fonts/goodtimes.eot?ea366059460b1901845ffb2cc94da166) format("eot"),url(/fonts/goodtimes.woff?744d2e522ab5f1a6624dd400b77cd0d1) format("woff"),url(/fonts/goodtimes.ttf?772115132e8c32d4da43e55fbe1ee426) format("truetype"),url(/fonts/goodtimes.svg?d3460c8a74672767013dade24e866c9c#webfont44PDl6Sr) format("svg");
+    src:url(/fonts/goodtimes.eot?ea366059460b1901845ffb2cc94da166) format("eot"),
+    url(/fonts/goodtimes.woff?744d2e522ab5f1a6624dd400b77cd0d1) format("woff"),
+    url(/fonts/goodtimes.ttf?772115132e8c32d4da43e55fbe1ee426) format("truetype"),
+    url(/fonts/goodtimes.svg?d3460c8a74672767013dade24e866c9c#webfont44PDl6Sr) format("svg");
     font-weight:400;
     font-style:normal}a {
     text-decoration: underline;
@@ -979,8 +978,6 @@ video {
   }.lg\:py-20 {
     padding-top: 5rem !important;
     padding-bottom: 5rem !important;
-  }.lg\:pb-12 {
-    padding-bottom: 3rem !important;
   }
 }
 
