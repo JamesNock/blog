@@ -22,5 +22,5 @@ jobs:
         run: ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
       - name: Deploy with rsync
-        run: rsync -avz --delete . ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:blog/
+        run: rsync -avz --delete . ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:newblog/
 
