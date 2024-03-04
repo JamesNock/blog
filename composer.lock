@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a7bedbff9265696a9c496d58753fa750",
+    "content-hash": "b6808b6341d9ca8b6d560d9c3cf227de",
     "packages": [
         {
             "name": "ajthinking/archetype",
@@ -5365,6 +5365,54 @@
                 }
             ],
             "time": "2024-02-28T15:24:29+00:00"
+        },
+        {
+            "name": "statamic/ssg",
+            "version": "2.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/statamic/ssg.git",
+                "reference": "4412cd7162a5f4a1c64726507df4ab3a3c1fa774"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/statamic/ssg/zipball/4412cd7162a5f4a1c64726507df4ab3a3c1fa774",
+                "reference": "4412cd7162a5f4a1c64726507df4ab3a3c1fa774",
+                "shasum": ""
+            },
+            "require": {
+                "statamic/cms": "^4.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^7.0 || ^8.0"
+            },
+            "suggest": {
+                "spatie/fork": "Required to generate pages concurrently (^0.0.4)."
+            },
+            "type": "statamic-addon",
+            "extra": {
+                "statamic": {
+                    "name": "Static Site Generator",
+                    "description": "Static Site Generator addon"
+                },
+                "laravel": {
+                    "providers": [
+                        "Statamic\\StaticSite\\ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Statamic\\StaticSite\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "description": "Static site generator for Statamic 3.",
+            "support": {
+                "issues": "https://github.com/statamic/ssg/issues",
+                "source": "https://github.com/statamic/ssg/tree/2.2.0"
+            },
+            "time": "2023-08-22T20:53:31+00:00"
         },
         {
             "name": "statamic/stringy",
