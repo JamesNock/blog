@@ -5,6 +5,9 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{{ $title }} — {{ $settings:site_name }}</title>
+        {{ if url == '/' }}
+        <meta name="description" content="Ramblings of, Software Engineering Lead, James Nock." />
+        {{ else }}
         <meta name="description" content="{{ $intro | strip_tags | entities }}">
         <script type="application/ld+json">
             {
@@ -13,12 +16,13 @@
               "name": "{{ $title }}",
               "author": {
                 "@type": "Person",
-                "name": "{{ $author:name }}"
+                "name": "James Nock"
               },
               "datePublished": "{{ $date | format("Y-m-d") }}",
               "description": "{{ $intro | strip_tags | entities }}"
             }
         </script>
+        {{ /if }}
         <link rel="stylesheet" href="{{ mix src='css/styles.css' }}">
         <link rel="favicon" href="/favicon.ico" />
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>

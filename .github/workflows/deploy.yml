@@ -41,5 +41,5 @@ jobs:
             composer install
             nvm use || nvm install $(cat .nvmrc)
             npm install
-            mkdir ~/newblog/storage/app/static/img/containers/
             npm run build
+            php please cache:clear
