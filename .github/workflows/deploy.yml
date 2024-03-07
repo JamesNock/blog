@@ -27,19 +27,26 @@ jobs:
         run: ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
       - name: Deploy with rsync
-        run: rsync -avz --delete . ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:newblog/
+        run: rsync -avz --delete . ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:newblog/${GITHUB_SHA}
 
       - name: Build site
         uses: appleboy/ssh-action@master
+        env:
+          GITHUB_SHA: ${GITHUB_SHA}
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
+          envs: GITHUB_SHA
           script: |
-            cd ~/newblog
+            cd ~/newblog/${GITHUB_SHA}
             cp ~/envs/newblog/.env .
             composer install
             nvm use || nvm install $(cat .nvmrc)
             npm install
             npm run build
-            php please cache:clear
+            cd ~/newblog
+            rm ~/newblog/current 2> /dev/null
+            ln -s ~/newblog/${GITHUB_SHA} ~/newblog/current
+            cd ~/newblog
+            ls -dt */ | tail -n +3 | xargs rm -rf
