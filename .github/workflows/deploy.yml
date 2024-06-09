@@ -38,8 +38,7 @@ jobs:
           ssh -o StrictHostKeyChecking=no $LIGHTSAIL_USER@$LIGHTSAIL_HOST 'echo "SSH connection established"'
 
           # Copy ENV (composer)
-          ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST "cd ~/blog && cp ~/envs/blog/$GITHUB_SHA/.env .env"
-
+          ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST "cd ~/newblog && cp ~/envs/newblog/$GITHUB_SHA/.env .env"
 
           # Install dependencies (composer)
           ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST "cd ~/newblog/$GITHUB_SHA && composer install"
