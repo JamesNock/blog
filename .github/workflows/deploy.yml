@@ -18,7 +18,7 @@ jobs:
           node-version: "20.x"
 
       - name: Set up SSH
-        uses: webfactory/ssh-agent@v0.5.3
+        uses: webfactory/ssh-agent@v0.9.0
         with:
             ssh-private-key: ${{ secrets.LIGHTSAIL_SSH_KEY }}
 
