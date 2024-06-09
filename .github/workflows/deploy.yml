@@ -36,10 +36,11 @@ jobs:
           # Ensure SSH is available
           ssh -o StrictHostKeyChecking=no $LIGHTSAIL_USER@$LIGHTSAIL_HOST 'echo "SSH connection established"'
 
-          # Install dependencies (adjust as needed)
+          # Install dependencies (composer)
           ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST 'cd ~/newblog && npm install && cp ~/envs/newblog/.env . && composer install'
 
-          ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST 'nvm use || nvm install ~/newblog/${GITHUB_SHA}/.nvmrc && npm install && npm run build'
+          # Install dependencies (npm)
+          ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST 'nvm use || nvm install $(cat ~/newblog/${GITHUB_SHA}/.nvmrc) && npm install && npm run build'
 
           ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST 'cd ~/newblog && rm ~/newblog/current 2> /dev/null && ln -s ~/newblog/${GITHUB_SHA} ~/newblog/current && cd ~/newblog && ls -dt */ | tail -n +3 | xargs rm -rf'
 
