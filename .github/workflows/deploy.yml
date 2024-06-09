@@ -38,15 +38,16 @@ jobs:
           ssh -o StrictHostKeyChecking=no $LIGHTSAIL_USER@$LIGHTSAIL_HOST 'echo "SSH connection established"'
 
           # Copy ENV (composer)
-          ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST 'cd ~/newblog && cp ~/envs/newblog/$GITHUB_SHA/.env .env'
+          ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST "cd ~/blog && cp ~/envs/blog/$GITHUB_SHA/.env .env"
+
 
           # Install dependencies (composer)
-          ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST 'cd ~/newblog/$GITHUB_SHA && composer install'
+          ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST "cd ~/newblog/$GITHUB_SHA && composer install"
 
           # Install dependencies (npm)
-          ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST 'cd ~/newblog/$GITHUB_SHA && nvm use || nvm install $(cat ~/newblog/$GITHUB_SHA/.nvmrc) && npm install && npm run build'
+          ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST "cd ~/newblog/$GITHUB_SHA && nvm use || nvm install $(cat ~/newblog/$GITHUB_SHA/.nvmrc) && npm install && npm run build"
 
-          ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST 'cd ~/newblog && rm ~/newblog/current 2> /dev/null && ln -s ~/newblog/$GITHUB_SHA ~/newblog/current && cd ~/newblog && ls -dt | tail -n +3 | xargs rm -rf'
+          ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST "cd ~/newblog && rm ~/newblog/current 2> /dev/null && ln -s ~/newblog/$GITHUB_SHA ~/newblog/current && cd ~/newblog && ls -dt | tail -n +3 | xargs rm -rf"
 
       - name: Notify deployment success
         run: echo "Deployment to Lightsail successful!"
