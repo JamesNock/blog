@@ -46,6 +46,10 @@ jobs:
           # Install dependencies (npm)
           ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST "cd ~/newblog/$GITHUB_SHA && nvm use || nvm install $(cat ~/newblog/$GITHUB_SHA/.nvmrc) && npm install && npm run build"
 
+          # Fix permissions
+          ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST "cd ~/newblog/$GITHUB_SHA && chmod -R 755 storage/app/static"
+
+          # Change symlink and delete old versions
           ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST "cd ~/newblog && rm ~/newblog/current 2> /dev/null && ln -s ~/newblog/$GITHUB_SHA ~/newblog/current && cd ~/newblog && ls -dt | tail -n +3 | xargs rm -rf"
 
       - name: Notify deployment success
