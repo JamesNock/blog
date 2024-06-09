@@ -2,7 +2,7 @@ name: Build & Deploy
 on:
   push:
     branches:
-      - lightsail
+      - main
   workflow_dispatch:
 
 jobs:
