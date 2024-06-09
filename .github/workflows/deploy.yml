@@ -2,14 +2,14 @@ name: Build & Deploy
 on:
   push:
     branches:
-      - main
+      - lightsail
   workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout main branch
+      - name: Checkout branch
         uses: actions/checkout@v4
 
       - name: Use Node.js
@@ -17,36 +17,26 @@ jobs:
         with:
           node-version: "20.x"
 
-      - name: Install SSH Key
-        uses: shimataro/ssh-key-action@v2
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.5.3
         with:
-          key: ${{ secrets.SSH_KEY }}
-          known_hosts: "unnecessary"
+            ssh-private-key: ${{ secrets.LIGHTSAIL_SSH_KEY }}
 
-      - name: Adding Known Hosts
-        run: ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
-
-      - name: Deploy with rsync
-        run: rsync -avz --delete . ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:newblog/${GITHUB_SHA}
-
-      - name: Build site
-        uses: appleboy/ssh-action@master
+      - name: Deploy to Lightsail
         env:
-          GITHUB_SHA: ${GITHUB_SHA}
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_KEY }}
-          envs: GITHUB_SHA
-          script: |
-            cd ~/newblog/${GITHUB_SHA}
-            cp ~/envs/newblog/.env .
-            composer install
-            nvm use || nvm install $(cat .nvmrc)
-            npm install
-            npm run build
-            cd ~/newblog
-            rm ~/newblog/current 2> /dev/null
-            ln -s ~/newblog/${GITHUB_SHA} ~/newblog/current
-            cd ~/newblog
-            ls -dt */ | tail -n +3 | xargs rm -rf
+          LIGHTSAIL_HOST: ${{ secrets.LIGHTSAIL_HOST }}
+          LIGHTSAIL_USER: ${{ secrets.LIGHTSAIL_USER }}
+        run: |
+          # Ensure SSH is available
+          ssh -o StrictHostKeyChecking=no $LIGHTSAIL_USER@$LIGHTSAIL_HOST 'echo "SSH connection established"'
+
+          # Navigate to the web application directory (adjust as needed)
+          ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST 'cd ~/newblog/${GITHUB_SHA} && git pull origin lightsail'
+
+          # Install dependencies (adjust as needed)
+          ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST 'cd /path/to/app && npm install && cp ~/envs/newblog/.env . && composer install && nvm use || nvm install $(cat .nvmrc) && npm install && npm run build'
+
+          ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST 'cd ~/newblog && rm ~/newblog/current 2> /dev/null && ln -s ~/newblog/${GITHUB_SHA} ~/newblog/current && cd ~/newblog && ls -dt */ | tail -n +3 | xargs rm -rf'
+
+      - name: Notify deployment success
+        run: echo "Deployment to Lightsail successful!"
