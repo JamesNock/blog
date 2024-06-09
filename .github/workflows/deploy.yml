@@ -22,6 +22,12 @@ jobs:
         with:
             ssh-private-key: ${{ secrets.LIGHTSAIL_SSH_KEY }}
 
+      - name: Adding Known Hosts
+        run: ssh-keyscan -H ${{ secrets.LIGHTSAIL_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Deploy with rsync
+        run: rsync -avz --delete . ${{ secrets.LIGHTSAIL_USER }}@${{ secrets.LIGHTSAIL_HOST }}:newblog/${GITHUB_SHA}
+
       - name: Deploy to Lightsail
         env:
           LIGHTSAIL_HOST: ${{ secrets.LIGHTSAIL_HOST }}
@@ -30,11 +36,8 @@ jobs:
           # Ensure SSH is available
           ssh -o StrictHostKeyChecking=no $LIGHTSAIL_USER@$LIGHTSAIL_HOST 'echo "SSH connection established"'
 
-          # Navigate to the web application directory (adjust as needed)
-          ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST 'cd ~/newblog/${GITHUB_SHA} && git pull origin lightsail'
-
           # Install dependencies (adjust as needed)
-          ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST 'cd /path/to/app && npm install && cp ~/envs/newblog/.env . && composer install && nvm use || nvm install $(cat .nvmrc) && npm install && npm run build'
+          ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST 'cd ~/newblog && npm install && cp ~/envs/newblog/.env . && composer install && nvm use || nvm install $(cat .nvmrc) && npm install && npm run build'
 
           ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST 'cd ~/newblog && rm ~/newblog/current 2> /dev/null && ln -s ~/newblog/${GITHUB_SHA} ~/newblog/current && cd ~/newblog && ls -dt */ | tail -n +3 | xargs rm -rf'
 
