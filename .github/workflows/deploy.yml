@@ -37,7 +37,7 @@ jobs:
           ssh -o StrictHostKeyChecking=no $LIGHTSAIL_USER@$LIGHTSAIL_HOST 'echo "SSH connection established"'
 
           # Install dependencies (composer)
-          ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST 'cd ~/newblog && npm install && cp ~/envs/newblog/.env . && composer install'
+          ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST 'cd ~/newblog && cp ~/envs/newblog/.env . && composer install'
 
           # Install dependencies (npm)
           ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST 'nvm use || nvm install $(cat ~/newblog/${GITHUB_SHA}/.nvmrc) && npm install && npm run build'
