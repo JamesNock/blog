@@ -32,6 +32,7 @@ jobs:
         env:
           LIGHTSAIL_HOST: ${{ secrets.LIGHTSAIL_HOST }}
           LIGHTSAIL_USER: ${{ secrets.LIGHTSAIL_USER }}
+          GITHUB_SHA: ${{ secrets.GITHUB_SHA }}
         run: |
           # Ensure SSH is available
           ssh -o StrictHostKeyChecking=no $LIGHTSAIL_USER@$LIGHTSAIL_HOST 'echo "SSH connection established"'
