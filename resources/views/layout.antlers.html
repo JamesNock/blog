@@ -7,9 +7,13 @@
         <title>{{ $title }} — {{ $settings:site_name }}</title>
         <script data-no-cookie data-respect-dnt async src="https://cdn.splitbee.io/sb.js"></script>
         {{ if url == '/' }}
-        <meta name="description" content="Ramblings of, Software Engineering Lead, James Nock." />
+        <meta name="description" content="Ramblings of Software Engineering Lead, James Nock." />
         {{ else }}
         <meta name="description" content="{{ $intro | strip_tags | entities }}">
+        {{ /if }}
+
+        {{ feedamic }}
+
         <script type="application/ld+json">
             {
               "@context": "https://schema.org/",
@@ -19,11 +23,10 @@
                 "@type": "Person",
                 "name": "James Nock"
               },
-              "datePublished": "{{ $date | format("Y-m-d") }}",
+              "datePublished": "{{ $date | format('Y-m-d') }}",
               "description": "{{ $intro | strip_tags | entities }}"
             }
         </script>
-        {{ /if }}
         <link rel="stylesheet" href="{{ mix src='css/styles.css' }}">
         <link rel="favicon" href="/favicon.ico" />
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
