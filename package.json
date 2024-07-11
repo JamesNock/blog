@@ -23,5 +23,8 @@
     },
     "dependencies": {
         "prismjs": "^1.29.0"
+    },
+    "engines": {
+        "node": ">=16.20.2"
     }
 }
