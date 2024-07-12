@@ -28,15 +28,15 @@ RUN curl -sL https://deb.nodesource.com/setup_18.x | bash - && \
 # Copy existing application directory contents
 COPY . /var/www
 
+# Permissions
+RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
+RUN chmod -R 775 /var/www/storage /var/www/bootstrap/cache
+
 # Install PHP dependencies
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 
 # Install npm dependencies and run the build
 RUN npm install && npm run build
-
-# Permissions
-RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
-RUN chmod -R 775 /var/www/storage /var/www/bootstrap/cache
 
 # Start the application
 CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
