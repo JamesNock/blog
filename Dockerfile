@@ -15,8 +15,11 @@ RUN apt-get update && apt-get install -y \
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg
 RUN docker-php-ext-install gd pdo pdo_mysql
 
+# Copy existing application directory contents
+COPY . /var/www
+
 # Set the working directory inside the container
-#WORKDIR /var/www
+WORKDIR /var/www
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -24,9 +27,6 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Install Node.js
 RUN curl -sL https://deb.nodesource.com/setup_18.x | bash - && \
     apt-get install -y nodejs
-
-# Copy existing application directory contents
-COPY . /var/www
 
 # Permissions
 RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
