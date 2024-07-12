@@ -36,7 +36,26 @@ RUN chmod -R 775 /var/www/storage /var/www/bootstrap/cache
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 
 # Install npm dependencies and run the build
-RUN npm install && npm run build
+RUN npm install && npm run production && npm run build
 
-# Start the application
-CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
+## Start the application
+#CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
+
+
+# Stage 2: Nginx for serving static files
+FROM nginx:latest
+
+# Remove the default Nginx configuration file
+RUN rm /etc/nginx/conf.d/default.conf
+
+# Copy custom Nginx configuration file
+COPY ./nginx.conf /etc/nginx/conf.d/default.conf
+
+# Copy static files from the PHP build stage
+COPY --from=php-fpm /var/www/storage/app/static /usr/share/nginx/html
+
+# Expose port 80
+EXPOSE 80
+
+# Start Nginx
+CMD ["nginx", "-g", "daemon off;"]
