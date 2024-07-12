@@ -26,7 +26,7 @@ RUN curl -sL https://deb.nodesource.com/setup_18.x | bash - && \
     apt-get install -y nodejs
 
 # Copy existing application directory contents
-COPY . .
+COPY . /var/www
 
 # Install PHP dependencies
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader
