@@ -47,10 +47,10 @@ RUN npm install && npm run production && npm run build
 FROM nginx:latest
 
 # Remove the default Nginx configuration file
-RUN rm /etc/nginx/conf.d/default.conf
+RUN #rm /etc/nginx/conf.d/default.conf
 
 # Copy custom Nginx configuration file
-COPY ./nginx.conf /etc/nginx/conf.d/default.conf
+#COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 
 # Copy static files from the PHP build stage
 COPY --from=php-fpm /var/www/storage/app/static /usr/share/nginx/html
