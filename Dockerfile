@@ -1,5 +1,6 @@
 # Use the official PHP image with PHP 8.2
-FROM php:8.2-fpm
+# Stage 1: Build the PHP application
+FROM php:8.2-fpm as php-fpm
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
