@@ -53,10 +53,10 @@ FROM nginx:latest
 #COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 
 # Copy static files from the PHP build stage
-COPY ./storage/app/static /usr/share/nginx/html
+COPY --from=php-fpm /var/www/storage/app/static /usr/share/nginx/html
 
 # Expose port 80
-EXPOSE 80
+#EXPOSE 80
 
 # Start Nginx
 #CMD ["nginx", "-g", "daemon off;"]
