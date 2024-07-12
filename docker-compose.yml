@@ -28,7 +28,7 @@ services:
             - "traefik.http.services.app.loadbalancer.server.port=8000"
         volumes:
             - app_data:/var/www
-            - ./storage/app/static:/var/www/public
+            - ./storage/app/static:/usr/share/nginx/html
 
 volumes:
     app_data:
