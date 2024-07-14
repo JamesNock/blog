@@ -24,7 +24,8 @@ services:
             context: .
             dockerfile: Dockerfile
         labels:
-            - "traefik.http.routers.app.entrypoints=web"
+            - "traefik.enable=true"
+            - "traefik.http.routers.app.entrypoints=traefik"
             - "traefik.http.services.app.loadbalancer.server.port=8000"
         volumes:
             - app_data:/var/www
