@@ -3,7 +3,7 @@
 FROM php:8.2-fpm as php-fpm
 
 # Install system dependencies
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install --no-install-recommends -y \
     libpng-dev \
     libjpeg-dev \
     libfreetype6-dev \
@@ -27,7 +27,7 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Install Node.js
 RUN curl -sL https://deb.nodesource.com/setup_18.x | bash - && \
-    apt-get install -y nodejs
+    apt-get install --no-install-recommends -y nodejs
 
 # Permissions
 RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
@@ -53,8 +53,8 @@ FROM nginx:latest
 #COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 
 # Copy static files from the PHP build stage
-RUN mkdir -p /usr/share/nginx/html
-COPY --from=php-fpm /var/www/storage/app/static /usr/share/nginx/html
+#RUN mkdir -p /usr/share/nginx/html
+COPY --from=php-fpm /var/www/storage/app/static /var/www/public
 
 # Expose port 80
 #EXPOSE 80
