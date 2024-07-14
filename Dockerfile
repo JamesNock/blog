@@ -53,6 +53,7 @@ FROM nginx:latest
 #COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 
 # Copy static files from the PHP build stage
+RUN mkdir -p /usr/share/nginx/html
 COPY --from=php-fpm /var/www/storage/app/static /usr/share/nginx/html
 
 # Expose port 80
