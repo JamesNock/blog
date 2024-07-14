@@ -25,7 +25,8 @@ services:
             dockerfile: Dockerfile
         labels:
             - "traefik.enable=true"
-            - "traefik.http.routers.app.entrypoints=traefik"
+            - "traefik.http.routers.app.entrypoints=web"  # Match the entry point defined in Traefik
+            - "traefik.http.routers.app.rule=Host(`newblog.james-nock.co.uk`)"  # Define a routing rule
             - "traefik.http.services.app.loadbalancer.server.port=8000"
         volumes:
             - app_data:/var/www
