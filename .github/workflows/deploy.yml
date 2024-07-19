@@ -30,14 +30,14 @@ jobs:
       - name: Adding Known Hosts
         run: ssh-keyscan -H ${{ secrets.LIGHTSAIL_HOST }} >> ~/.ssh/known_hosts
 
-      - name: Deploy with rsync
-        run: rsync -avz --delete . ${{ secrets.LIGHTSAIL_USER }}@${{ secrets.LIGHTSAIL_HOST }}:blog/${GITHUB_SHA}
+      - name: Copy with rsync
+        run: rsync -avz --delete . ${{ secrets.LIGHTSAIL_USER }}@${{ secrets.LIGHTSAIL_HOST }}:website/${{ github.sha }}
 
       - name: Deploy to Lightsail
         env:
           LIGHTSAIL_HOST: ${{ secrets.LIGHTSAIL_HOST }}
           LIGHTSAIL_USER: ${{ secrets.LIGHTSAIL_USER }}
-          GITHUB_SHA: ${{ secrets.GITHUB_SHA }}
+          GITHUB_SHA: ${{ github.sha }}
           WORKDIR: "blog"
         run: |
                # Ensure SSH is available
