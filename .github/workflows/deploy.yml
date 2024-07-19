@@ -51,10 +51,10 @@ jobs:
           ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST "cp ~/envs/$WORKDIR/.env ~/$WORKDIR/$GITHUB_SHA/.env"
 
           # Install dependencies (composer)
-        #  ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST "cd ~/$WORKDIR/$GITHUB_SHA && composer install"
+          # ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST "cd ~/$WORKDIR/$GITHUB_SHA && composer install"
 
           # Build static site
-         # ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST "cd ~/$WORKDIR/$GITHUB_SHA && php please ssg:generate"
+          # ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST "cd ~/$WORKDIR/$GITHUB_SHA && php please ssg:generate"
 
           #          # Install dependencies (npm)
           #          ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST "cd ~/$WORKDIR/$GITHUB_SHA && nvm use || nvm install $(cat ~/$WORKDIR/$GITHUB_SHA/.nvmrc) && npm install && npm run build"
