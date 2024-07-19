@@ -41,7 +41,7 @@ jobs:
         run: ssh-keyscan -H ${{ secrets.LIGHTSAIL_HOST }} >> ~/.ssh/known_hosts
 
       - name: Copy with rsync
-        run: rsync -avz --delete . ${{ secrets.LIGHTSAIL_USER }}@${{ secrets.LIGHTSAIL_HOST }}:blog/${{ github.sha }}
+        run: rsync -avz --delete ./storage/app/static ${{ secrets.LIGHTSAIL_USER }}@${{ secrets.LIGHTSAIL_HOST }}:blog/${{ github.sha }}
 
       - name: Build and Launch
         env:
@@ -50,29 +50,17 @@ jobs:
           GITHUB_SHA: ${{ github.sha }}
           WORKDIR: "blog"
         run: |
-          # Ensure SSH is available
-          #ssh -vvv -o StrictHostKeyChecking=no $LIGHTSAIL_USER@$LIGHTSAIL_HOST
-
           # Copy ENV
           ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST "cp ~/envs/$WORKDIR/.env ~/$WORKDIR/$GITHUB_SHA/.env"
-
-          # Install dependencies (composer)
-          # ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST "cd ~/$WORKDIR/$GITHUB_SHA && composer install"
-
-          # Build static site
-          # ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST "cd ~/$WORKDIR/$GITHUB_SHA && php please ssg:generate"
-
-          #          # Install dependencies (npm)
-          #          ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST "cd ~/$WORKDIR/$GITHUB_SHA && nvm use || nvm install $(cat ~/$WORKDIR/$GITHUB_SHA/.nvmrc) && npm install && npm run build"
 
           # Change symlink and delete old version
           ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST "cd ~/$WORKDIR && rm ~/$WORKDIR/current 2> /dev/null && ln -s ~/$WORKDIR/$GITHUB_SHA ~/$WORKDIR/current"
 
           # Fix permissions
-          ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST "cd ~/$WORKDIR/$GITHUB_SHA && chmod -R 755 storage/app/static"
+          #ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST "cd ~/$WORKDIR/$GITHUB_SHA && chmod -R 755 storage/app/static"
 
-          # Change symlink and delete old versions
-          ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST "cd ~/$WORKDIR && rm ~/$WORKDIR/current 2> /dev/null && ln -s ~/$WORKDIR/$GITHUB_SHA ~/$WORKDIR/current && cd ~/$WORKDIR && ls -dt | tail -n +3 | xargs rm -rf"
+          # Delete old versions
+          ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST "cd ~/$WORKDIR && ls -dt */ | tail -n +3 | xargs rm -rf"
 
       - name: Notify deployment success
         run: echo "Deployment to Lightsail successful!"
