@@ -20,7 +20,7 @@ jobs:
       - name: Composer
         uses: php-actions/composer@v6
         with:
-          command: composer install && php please ssg:generate
+          command: "php please ssg:generate"
 
       - name: Install dependencies and build
         run: |
