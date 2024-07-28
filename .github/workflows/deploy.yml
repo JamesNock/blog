@@ -23,6 +23,7 @@ jobs:
           tools:
             composer
           php-version: '8.2'
+          extensions: imagick
 
       - name: Install dependencies
         run: composer install --prefer-dist
