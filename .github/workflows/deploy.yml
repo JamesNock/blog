@@ -51,8 +51,8 @@ jobs:
           GITHUB_SHA: ${{ github.sha }}
           WORKDIR: "blog"
         run: |
-          # Copy ENV
-          ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST "cp ~/envs/$WORKDIR/.env ~/$WORKDIR/$GITHUB_SHA/.env"
+          # Fix img permissions
+          ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST "cd ~/$WORKDIR/$GITHUB_SHA/ && chmod -R 755 img"
 
           # Change symlink and delete old version
           ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST "cd ~/$WORKDIR && rm ~/$WORKDIR/current 2> /dev/null && ln -sfn ~/$WORKDIR/$GITHUB_SHA ~/$WORKDIR/current"
