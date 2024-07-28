@@ -25,6 +25,12 @@ jobs:
           php-version: '8.2'
           extensions: imagick
 
+      - name: 'Create env file'
+        run: |
+          touch .env
+          echo APP_KEY= >> .env
+          cat .env
+
       - name: Install dependencies
         run: composer install --prefer-dist
 
