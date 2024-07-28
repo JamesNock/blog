@@ -54,10 +54,7 @@ jobs:
           ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST "cp ~/envs/$WORKDIR/.env ~/$WORKDIR/$GITHUB_SHA/.env"
 
           # Change symlink and delete old version
-          ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST "cd ~/$WORKDIR && rm ~/$WORKDIR/current 2> /dev/null && ln -s ~/$WORKDIR/$GITHUB_SHA ~/$WORKDIR/current"
-
-          # Fix permissions
-          #ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST "cd ~/$WORKDIR/$GITHUB_SHA && chmod -R 755 storage/app/static"
+          ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST "cd ~/$WORKDIR && rm ~/$WORKDIR/current 2> /dev/null && ln -sfn ~/$WORKDIR/$GITHUB_SHA ~/$WORKDIR/current"
 
           # Delete old versions
           ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST "cd ~/$WORKDIR && ls -dt */ | tail -n +3 | xargs rm -rf"
