@@ -15,8 +15,8 @@
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.9",
         "mitydigital/feedamic": "^2.4",
-        "statamic/cms": "^4.58",
-        "statamic/ssg": "^2.2"
+        "statamic/cms": "^5.17",
+        "statamic/ssg": "^3.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.8.1",
