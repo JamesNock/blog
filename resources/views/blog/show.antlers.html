@@ -8,38 +8,44 @@
     </header>
     <section class="max-w-3xl mx-auto py-6 lg:py-12">
         {{ main_content }}
-            {{ if $type == "text" }}
-                <div class="prose">{{ $text }}</div>
-            {{ elseif $type == "code_block" }}
-<pre class="language-{{ $mode ?? 'php' }} rounded"><code>{{ $code }}</code></pre>
-            {{ elseif $type == "image" }}
-                <figure>
-                    <img src="{{ $image }}" alt="{{ $caption }}" />
-                    <figcaption>{{ $caption }}</figcaption>
-                </figure>
-            {{ /if }}
+        {{ if $type == "text" }}
+        <div class="prose">{{ $text }}</div>
+        {{ elseif $type == "code_block" }}
+        <pre class="language-{{ $mode ?? 'php' }} rounded"><code>{{ $code }}</code></pre>
+        {{ elseif $type == "image" }}
+        <figure>
+            <img src="{{ $image }}" alt="{{ $caption }}" />
+            <figcaption>{{ $caption }}</figcaption>
+        </figure>
+        {{ /if }}
         {{ /main_content }}
     </section>
 
-    <div class="my-12 flex items-center justify-center">
-        {{ if $author }}
-        <img src="{{ $author:avatar ?? $author:email | gravatar(160) }}" class="h-20 w-20 my-0 rounded-full mr-4">
-        {{ /if }}
-        <div class="text-left">
-            {{ if author }}
-            <div>
-                <a class="font-bold no-underline" href="/authors/{{ $author:handle }}">
+    <div class="my-12 flex gap-16 items-center justify-center">
+        <div class="my-12 flex items-center justify-center">
+            {{ if $author }}
+            <img src="{{ $author:avatar ?? $author:email | gravatar(160) }}" class="h-20 w-20 my-0 rounded-full mr-4">
+            {{ /if }}
+            <div class="text-left">
+                {{ if author }}
+                <div>
+                    <a class="font-bold no-underline" href="/authors/{{ $author:handle }}">
                         <span class="bg-clip-text text-transparent bg-gradient-to-r from-hot-pink to-purple-500">
                             {{ $author:name }}
                         </span>
-                </a>
+                    </a>
+                </div>
+                {{ /if }}
+                <time datetime="{{ $date | format('Y-m-d') }}">{{ $date }}</time>
             </div>
-            {{ /if }}
-            <time datetime="{{ $date | format('Y-m-d') }}">{{ $date }}</time>
+        </div>
+
+        <div class="my-12 flex items-center justify-center">
+            <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="jamesnock" data-color="#BD5FFF" data-emoji="" data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#ffffff" data-coffee-color="#FFDD00" ></script>
         </div>
     </div>
 
     {{ if $settings:show_signup }}
-        {{ partial:sign-up}}
+    {{ partial:sign-up}}
     {{ /if }}
 </article>
