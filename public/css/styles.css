@@ -123,6 +123,7 @@ textarea {
   font-size: 100%; /* 1 */
   font-weight: inherit; /* 1 */
   line-height: inherit; /* 1 */
+  letter-spacing: inherit; /* 1 */
   color: inherit; /* 1 */
   margin: 0; /* 2 */
   padding: 0; /* 3 */
@@ -135,9 +136,9 @@ select {
 1. Correct the inability to style clickable types in iOS and Safari.
 2. Remove default button styles.
 */button,
-[type='button'],
-[type='reset'],
-[type='submit'] {
+input:where([type='button']),
+input:where([type='reset']),
+input:where([type='submit']) {
   -webkit-appearance: button; /* 1 */
   background-color: transparent; /* 2 */
   background-image: none; /* 2 */
@@ -690,8 +691,14 @@ video {
   border-width: 0 !important;
 }.static {
   position: static !important;
+}.fixed {
+  position: fixed !important;
 }.relative {
   position: relative !important;
+}.bottom-0 {
+  bottom: 0px !important;
+}.left-0 {
+  left: 0px !important;
 }.top-0 {
   top: 0px !important;
 }.col-span-1 {
@@ -774,12 +781,12 @@ video {
   justify-content: center !important;
 }.justify-between {
   justify-content: space-between !important;
-}.gap-6 {
-  gap: 1.5rem !important;
-}.gap-8 {
-  gap: 2rem !important;
 }.gap-16 {
   gap: 4rem !important;
+}.gap-4 {
+  gap: 1rem !important;
+}.gap-6 {
+  gap: 1.5rem !important;
 }.space-x-8 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0 !important;
   margin-right: calc(2rem * var(--tw-space-x-reverse)) !important;
@@ -808,6 +815,9 @@ video {
 }.bg-gray-200 {
   --tw-bg-opacity: 1 !important;
   background-color: rgb(229 231 235 / var(--tw-bg-opacity)) !important;
+}.bg-hot-pink {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(253 45 120 / var(--tw-bg-opacity)) !important;
 }.bg-white {
   --tw-bg-opacity: 1 !important;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity)) !important;
@@ -822,6 +832,8 @@ video {
 }.bg-clip-text {
   -webkit-background-clip: text !important;
           background-clip: text !important;
+}.p-4 {
+  padding: 1rem !important;
 }.px-3 {
   padding-left: 0.75rem !important;
   padding-right: 0.75rem !important;
@@ -933,6 +945,51 @@ video {
 
 }a {
     text-decoration: underline;
+}.btn {
+    box-sizing: border-box;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+    border-radius: 1rem;
+    border-width: 2px;
+    border-style: solid;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    text-align: center;
+    font-weight: 700;
+    text-transform: uppercase;
+    --tw-text-opacity: 1;
+    color: rgb(18 21 30 / var(--tw-text-opacity));
+    --tw-drop-shadow: drop-shadow(0 4px 3px rgb(0 0 0 / 0.07)) drop-shadow(0 2px 2px rgb(0 0 0 / 0.06));
+    filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+    cursor: pointer;
+    text-decoration: none;
+}.btn:hover {
+        background-position: 100px;
+        --tw-text-opacity: 1;
+        color: rgb(18 21 30 / var(--tw-text-opacity));
+    }.btn-minimal {
+  border-radius: 0.75rem;
+  border-width: 2px;
+  --tw-border-opacity: 1;
+  border-color: rgb(0 255 255 / var(--tw-border-opacity));
+  padding: 0.25rem;
+  --tw-text-opacity: 1;
+  color: rgb(18 21 30 / var(--tw-text-opacity));
+}.btn-minimal:hover {
+        filter: brightness(0.8);
+    }.btn-minimal-primary {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 255 255 / var(--tw-bg-opacity));
+  font-weight: 700;
+}.btn-minimal-tertiary {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+  font-weight: 300;
 }.hover\:-top-2:hover {
   top: -0.5rem !important;
 }.hover\:text-hot-pink:hover {
@@ -944,12 +1001,16 @@ video {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow) !important;
 }@media (min-width: 768px) {.md\:col-span-2 {
     grid-column: span 2 / span 2 !important;
+  }.md\:mb-0 {
+    margin-bottom: 0px !important;
   }.md\:ml-3 {
     margin-left: 0.75rem !important;
   }.md\:mt-0 {
     margin-top: 0px !important;
   }.md\:block {
     display: block !important;
+  }.md\:flex {
+    display: flex !important;
   }.md\:hidden {
     display: none !important;
   }.md\:w-2\/3 {
@@ -969,6 +1030,4 @@ video {
     padding-bottom: 5rem !important;
   }
 }
-
-
 

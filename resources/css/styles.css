@@ -19,4 +19,27 @@ a {
     text-decoration: underline;
 }
 
+.btn {
+    box-sizing: border-box;
+    @apply appearance-none border-2 border-solid rounded-2xl py-4 px-8 my-4 text-center uppercase font-bold text-black drop-shadow-md;
+    cursor: pointer;
+    text-decoration: none;
 
+    &:hover {
+        background-position: 100px;
+        @apply text-black;
+    }
+}
+.btn-minimal {
+    @apply p-1 rounded-xl border-2 border-cyan-jn text-black;
+
+    &:hover {
+        filter: brightness(0.8);
+    }
+}
+.btn-minimal-primary {
+    @apply bg-cyan-jn  font-bold;
+}
+.btn-minimal-tertiary {
+    @apply font-light bg-white;
+}

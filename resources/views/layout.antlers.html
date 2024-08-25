@@ -30,7 +30,6 @@
         <link rel="stylesheet" href="{{ mix src='css/styles.css' }}">
         <link rel="favicon" href="/favicon.ico" />
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
-        <script src="{{ mix src='/js/site.js' }}"></script>
     </head>
     <body class="bg-white text-red font-body leading-normal flex flex-col h-full min-h-screen">
         {{ partial:nav }}
@@ -38,5 +37,6 @@
             {{ $template_content }}
         </main>
         {{ partial:footer }}
+        <script src="{{ mix src='/js/site.js' }}"></script>
     </body>
 </html>

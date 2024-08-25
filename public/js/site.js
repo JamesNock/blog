@@ -1,6 +1,97 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./node_modules/@splitbee/web/dist/web.esm.js":
+/*!****************************************************!*\
+  !*** ./node_modules/@splitbee/web/dist/web.esm.js ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var isBrowser = typeof window !== 'undefined';
+var SCRIPT_URL = 'https://cdn.splitbee.io/sb.js';
+var queue = [];
+
+var handleLoad = function handleLoad() {
+  if (isBrowser && !window.splitbee) return;
+  splitbee.track = window.splitbee.track;
+  splitbee.user = window.splitbee.user;
+  splitbee.enableCookie = window.splitbee.enableCookie;
+  splitbee.reset = window.splitbee.reset;
+  queue.forEach(function (ev) {
+    if (ev.type === 'track') window.splitbee.track.apply(null, ev.payload);else if (ev.type === 'user') window.splitbee.user.set.apply(null, ev.payload);else if (ev.type === 'enableCookie') window.splitbee.enableCookie.apply(null, ev.payload);else if (ev.type === 'reset') window.splitbee.reset();
+  });
+  queue = [];
+};
+
+var createAddToQueue = function createAddToQueue(type) {
+  return function () {
+    try {
+      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+      }
+
+      queue.push({
+        type: type,
+        payload: args
+      });
+
+      if (isBrowser && window.splitbee) {
+        handleLoad();
+      }
+
+      return Promise.resolve();
+    } catch (e) {
+      return Promise.reject(e);
+    }
+  };
+};
+
+var initSplitbee = function initSplitbee(options) {
+  if (!isBrowser || window.splitbee) return;
+  var document = window.document;
+  var scriptUrl = options !== null && options !== void 0 && options.scriptUrl ? options.scriptUrl : SCRIPT_URL;
+  var injectedScript = document.querySelector("script[src='" + scriptUrl + "']");
+
+  if (injectedScript) {
+    injectedScript.onload = handleLoad;
+    return;
+  }
+
+  var script = document.createElement('script');
+  script.src = scriptUrl;
+  script.async = true;
+
+  if (options) {
+    if (options.apiUrl) script.dataset.api = options.apiUrl;
+    if (options.token) script.dataset.token = options.token;
+    if (options.disableCookie) script.dataset.noCookie = '1';
+  }
+
+  script.onload = handleLoad;
+  document.head.appendChild(script);
+};
+
+var splitbee = {
+  track: /*#__PURE__*/createAddToQueue('track'),
+  user: {
+    set: /*#__PURE__*/createAddToQueue('user')
+  },
+  init: initSplitbee,
+  enableCookie: /*#__PURE__*/createAddToQueue('enableCookie'),
+  reset: /*#__PURE__*/createAddToQueue('reset')
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (splitbee);
+//# sourceMappingURL=web.esm.js.map
+
+
+/***/ }),
+
 /***/ "./resources/js/site.js":
 /*!******************************!*\
   !*** ./resources/js/site.js ***!
@@ -9,24 +100,24 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var prismjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! prismjs */ "./node_modules/prismjs/prism.js");
-/* harmony import */ var prismjs__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(prismjs__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var prismjs_themes_prism_tomorrow_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prismjs/themes/prism-tomorrow.css */ "./node_modules/prismjs/themes/prism-tomorrow.css");
-/* harmony import */ var prismjs_components_prism_markup_templating__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! prismjs/components/prism-markup-templating */ "./node_modules/prismjs/components/prism-markup-templating.js");
-/* harmony import */ var prismjs_components_prism_markup_templating__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(prismjs_components_prism_markup_templating__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var prismjs_components_prism_php__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! prismjs/components/prism-php */ "./node_modules/prismjs/components/prism-php.js");
-/* harmony import */ var prismjs_components_prism_php__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(prismjs_components_prism_php__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var prismjs_components_prism_bash__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! prismjs/components/prism-bash */ "./node_modules/prismjs/components/prism-bash.js");
-/* harmony import */ var prismjs_components_prism_bash__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(prismjs_components_prism_bash__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var prismjs_components_prism_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! prismjs/components/prism-css */ "./node_modules/prismjs/components/prism-css.js");
-/* harmony import */ var prismjs_components_prism_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(prismjs_components_prism_css__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var prismjs_components_prism_json__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! prismjs/components/prism-json */ "./node_modules/prismjs/components/prism-json.js");
-/* harmony import */ var prismjs_components_prism_json__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(prismjs_components_prism_json__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var prismjs_components_prism_javascript__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! prismjs/components/prism-javascript */ "./node_modules/prismjs/components/prism-javascript.js");
-/* harmony import */ var prismjs_components_prism_javascript__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(prismjs_components_prism_javascript__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var prismjs_components_prism_yaml__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! prismjs/components/prism-yaml */ "./node_modules/prismjs/components/prism-yaml.js");
-/* harmony import */ var prismjs_components_prism_yaml__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(prismjs_components_prism_yaml__WEBPACK_IMPORTED_MODULE_8__);
-// This is all you.
+/* harmony import */ var _splitbee_web__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @splitbee/web */ "./node_modules/@splitbee/web/dist/web.esm.js");
+/* harmony import */ var prismjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prismjs */ "./node_modules/prismjs/prism.js");
+/* harmony import */ var prismjs__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prismjs__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var prismjs_themes_prism_tomorrow_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! prismjs/themes/prism-tomorrow.css */ "./node_modules/prismjs/themes/prism-tomorrow.css");
+/* harmony import */ var prismjs_components_prism_markup_templating__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! prismjs/components/prism-markup-templating */ "./node_modules/prismjs/components/prism-markup-templating.js");
+/* harmony import */ var prismjs_components_prism_markup_templating__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(prismjs_components_prism_markup_templating__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var prismjs_components_prism_php__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! prismjs/components/prism-php */ "./node_modules/prismjs/components/prism-php.js");
+/* harmony import */ var prismjs_components_prism_php__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(prismjs_components_prism_php__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var prismjs_components_prism_bash__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! prismjs/components/prism-bash */ "./node_modules/prismjs/components/prism-bash.js");
+/* harmony import */ var prismjs_components_prism_bash__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(prismjs_components_prism_bash__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var prismjs_components_prism_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! prismjs/components/prism-css */ "./node_modules/prismjs/components/prism-css.js");
+/* harmony import */ var prismjs_components_prism_css__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(prismjs_components_prism_css__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var prismjs_components_prism_json__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! prismjs/components/prism-json */ "./node_modules/prismjs/components/prism-json.js");
+/* harmony import */ var prismjs_components_prism_json__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(prismjs_components_prism_json__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var prismjs_components_prism_javascript__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! prismjs/components/prism-javascript */ "./node_modules/prismjs/components/prism-javascript.js");
+/* harmony import */ var prismjs_components_prism_javascript__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(prismjs_components_prism_javascript__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var prismjs_components_prism_yaml__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! prismjs/components/prism-yaml */ "./node_modules/prismjs/components/prism-yaml.js");
+/* harmony import */ var prismjs_components_prism_yaml__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(prismjs_components_prism_yaml__WEBPACK_IMPORTED_MODULE_9__);
 
 
  // see other themes in the prism docs
@@ -38,7 +129,53 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-prismjs__WEBPACK_IMPORTED_MODULE_0___default().highlightAll();
+
+// Prism.highlightAll()
+
+(function (_document$querySelect, _document$querySelect2, _document$querySelect3) {
+  _splitbee_web__WEBPACK_IMPORTED_MODULE_0__["default"].init();
+  var deleteAllCookiesWithPrefix = function deleteAllCookiesWithPrefix(prefix) {
+    // Get all cookies as a single string
+    var cookies = document.cookie.split(';');
+
+    // Loop through all cookies
+    for (var i = 0; i < cookies.length; i++) {
+      var cookie = cookies[i].trim();
+      var cookieName = cookie.split('=')[0];
+
+      // Check if the cookie name starts with the given prefix
+      if (cookieName.startsWith(prefix)) {
+        // Delete the cookie by setting its expiration date to the past
+        document.cookie = cookieName + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+      }
+    }
+  };
+  var removeSplitBeeCookies = function removeSplitBeeCookies() {
+    deleteAllCookiesWithPrefix('sb_');
+  };
+  var cookieBannerEl = document.querySelector('#cookie-banner');
+  if (!localStorage.getItem('cookies-accepted')) {
+    cookieBannerEl.classList.remove('hidden');
+  } else if (localStorage.getItem('cookies-accepted') === 'all') {
+    _splitbee_web__WEBPACK_IMPORTED_MODULE_0__["default"].enableCookie();
+  }
+  (_document$querySelect = document.querySelector('.js-cookies-allow-min')) === null || _document$querySelect === void 0 || _document$querySelect.addEventListener('click', function () {
+    localStorage.setItem('cookies-accepted', 'minimal');
+    removeSplitBeeCookies();
+    cookieBannerEl.classList.add('hidden');
+  });
+  (_document$querySelect2 = document.querySelector('.js-cookies-allow-all')) === null || _document$querySelect2 === void 0 || _document$querySelect2.addEventListener('click', function () {
+    localStorage.setItem('cookies-accepted', 'all');
+    _splitbee_web__WEBPACK_IMPORTED_MODULE_0__["default"].enableCookie();
+    cookieBannerEl.classList.add('hidden');
+  });
+  (_document$querySelect3 = document.querySelector('.js-cookies-manage')) === null || _document$querySelect3 === void 0 || _document$querySelect3.addEventListener('click', function (e) {
+    e.preventDefault();
+    localStorage.removeItem('cookies-accepted');
+    removeSplitBeeCookies();
+    cookieBannerEl.classList.remove('hidden');
+  });
+})();
 
 /***/ }),
 

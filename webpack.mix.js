@@ -16,11 +16,12 @@ mix.js('resources/js/site.js', 'public/js')
 mix.postCss('resources/css/styles.css', 'public/css', [
     require('postcss-import'),
     require('tailwindcss/nesting'),
+    require('postcss-nesting'),
     require('tailwindcss'),
 ])
 
-// mix.webpackConfig({stats: {children: true}})
+mix.webpackConfig({stats: {children: true}})
 
 if (mix.inProduction()) {
-   mix.version();
+    mix.version();
 }
