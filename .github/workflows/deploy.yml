@@ -61,7 +61,7 @@ jobs:
           ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST "cd ~/$WORKDIR/$GITHUB_SHA/ && chmod -R 755 img"
 
           # Add robots.txt
-          ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST "cd ~/$WORKDIR/$GITHUB_SHA/ && echo 'User-agent: *' > robots.txt && echo 'Disallow: /' >> robots.txt"
+          ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST "cd ~/$WORKDIR/$GITHUB_SHA/ && echo 'User-agent: *' > robots.txt && echo 'Disallow:' >> robots.txt"
 
           # Change symlink and delete old version
           ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST "cd ~/$WORKDIR && rm ~/$WORKDIR/current 2> /dev/null && ln -sfn ~/$WORKDIR/$GITHUB_SHA ~/$WORKDIR/current"
