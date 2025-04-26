@@ -1,0 +1,6 @@
+from: /tutorials/2018/06/30/craftcms-flipbuilder-plugin/
+to: /craftcms-flipbuilder-plugin/
+redirect_type: '301'
+sites:
+  - default
+id: 680cc51df28ae

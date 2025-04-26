@@ -1,0 +1,6 @@
+from: /tutorials/2018/06/23/homebrew-mcrypt-mismatch-nts-vs-nts-debug/
+to: /homebrew-mcrypt-mismatch-nts-vs-nts-debug/
+redirect_type: '301'
+sites:
+  - default
+id: 680cc599f29d4

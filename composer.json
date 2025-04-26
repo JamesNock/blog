@@ -10,6 +10,7 @@
     "type": "project",
     "require": {
         "php": "^8.2",
+        "alt-design/alt-redirect": "^1.6",
         "guzzlehttp/guzzle": "^7.8",
         "laravel/framework": "^10.48",
         "laravel/sanctum": "^3.3",

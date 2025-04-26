@@ -1,0 +1,6 @@
+from: /tutorials/2023/08/29/batch-processing-with-imagemagick/
+to: /batch-processing-with-imagemagick/
+redirect_type: '301'
+sites:
+  - default
+id: 680cc506e73de
