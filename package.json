@@ -8,7 +8,7 @@
         "hot": "mix watch --hot",
         "prod": "npm run production",
         "production": "mix --production",
-        "build": "php artisan key:generate && php please ssg:generate"
+        "build": "php artisan key:generate && APP_URL=https://blog.james-nock.co.uk php please ssg:generate"
     },
     "devDependencies": {
         "@tailwindcss/typography": "^0.5.1",

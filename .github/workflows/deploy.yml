@@ -50,7 +50,7 @@ jobs:
       - name: Copy with rsync
         run: rsync -avz --delete ./storage/app/static/* ${{ secrets.LIGHTSAIL_USER }}@${{ secrets.LIGHTSAIL_HOST }}:blog/${{ github.sha }}
 
-      - name: Build and Launch
+      - name: Launch
         env:
           LIGHTSAIL_HOST: ${{ secrets.LIGHTSAIL_HOST }}
           LIGHTSAIL_USER: ${{ secrets.LIGHTSAIL_USER }}
@@ -63,7 +63,7 @@ jobs:
           # Add robots.txt
           ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST "cd ~/$WORKDIR/$GITHUB_SHA/ && echo 'User-agent: *' > robots.txt && echo 'Disallow:' >> robots.txt"
 
-          # Change symlink and delete old version
+          # Change symlink
           ssh $LIGHTSAIL_USER@$LIGHTSAIL_HOST "cd ~/$WORKDIR && rm ~/$WORKDIR/current 2> /dev/null && ln -sfn ~/$WORKDIR/$GITHUB_SHA ~/$WORKDIR/current"
 
           # Delete old versions
