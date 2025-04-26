@@ -15,6 +15,7 @@
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.9",
         "mitydigital/feedamic": "^2.4",
+        "pecotamic/sitemap": "^1.4",
         "statamic/cms": "^5.17",
         "statamic/ssg": "^3.0"
     },
