@@ -1,5 +1,5 @@
 <article class="max-w-6xl mx-auto px-3">
-    {{ collection:blog as="posts" paginate="12" sort="date:desc" }}
+    {{ collection:blog as="posts" paginate="18" sort="date:desc" }}
         <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 py-8">
             {{ posts }}
                 <div class="{{ $first ? 'md:col-span-2' : 'col-span-1' }}">
