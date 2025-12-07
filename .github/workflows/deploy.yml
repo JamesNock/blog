@@ -22,7 +22,7 @@ jobs:
         with:
           tools:
             composer
-          php-version: '8.2'
+          php-version: '8.3'
           extensions: imagick
 
       - name: 'Create env file'
