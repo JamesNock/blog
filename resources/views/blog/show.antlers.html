@@ -1,7 +1,7 @@
 <article class="max-w-5xl mx-auto px-3">
     <img class="rounded-xl max-h-[512px] mx-auto" src="{{ $hero_image }}" alt="{{ $hero_image:alt }}">
-    <header class="mx-auto max-w-3xl">
-        <h1 class="text-2xl py-6 lg:py-12">{{ $title }}</h1>
+    <header class="mx-auto max-w-3xl ">
+        <h1 class="text-2xl py-6">{{ $title }}</h1>
         {{ if $intro|strip_tags|length }}
         {{ $intro }}
         {{ /if }}

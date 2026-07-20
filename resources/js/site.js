@@ -1,5 +1,3 @@
-import splitbee from '@splitbee/web';
-
 import Prism from 'prismjs'
 
 import 'prismjs/themes/prism-tomorrow.css' // see other themes in the prism docs
@@ -21,53 +19,68 @@ import 'prismjs/components/prism-yaml'
 // Prism.highlightAll()
 
 (() => {
-    splitbee.init()
+    const posthogKey = 'phc_z6i8Ve9HPy7m4VwwvoBxWCLWgpT7qr6dqeT5wzMNcu7e'
+    let posthogPromise
 
-    const deleteAllCookiesWithPrefix = (prefix) => {
-        // Get all cookies as a single string
-        const cookies = document.cookie.split(';');
+    const loadPostHog = () => {
+        posthogPromise ??= import('posthog-js').then(({ default: posthog }) => {
+            posthog.init(posthogKey, {
+                api_host: 'https://eu.i.posthog.com',
+                ui_host: 'https://eu.posthog.com',
+                defaults: '2026-05-30',
+                person_profiles: 'identified_only',
+            })
 
-        // Loop through all cookies
-        for (let i = 0; i < cookies.length; i++) {
-            const cookie = cookies[i].trim();
+            return posthog
+        }).catch((error) => {
+            posthogPromise = undefined
+            console.error('Unable to load PostHog', error)
+        })
 
-            const cookieName = cookie.split('=')[0];
+        return posthogPromise
+    }
 
-            // Check if the cookie name starts with the given prefix
-            if (cookieName.startsWith(prefix)) {
-                // Delete the cookie by setting its expiration date to the past
-                document.cookie = cookieName + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-            }
+    const enablePostHog = async () => {
+        const posthog = await loadPostHog()
+
+        if (posthog?.has_opted_out_capturing()) {
+            posthog.opt_in_capturing({ captureEventName: false })
+            posthog.capture('$pageview')
         }
     }
 
-    const removeSplitBeeCookies = () => {
-        deleteAllCookiesWithPrefix('sb_');
+    const disablePostHog = async () => {
+        if (!posthogPromise) {
+            return
+        }
+
+        const posthog = await posthogPromise
+        posthog?.opt_out_capturing()
     }
 
     const cookieBannerEl = document.querySelector('#cookie-banner');
     if (!localStorage.getItem('cookies-accepted')) {
         cookieBannerEl.classList.remove('hidden')
     } else if (localStorage.getItem('cookies-accepted') === 'all') {
-        splitbee.enableCookie();
+        void enablePostHog();
     }
 
     document.querySelector('.js-cookies-allow-min')?.addEventListener('click', () => {
         localStorage.setItem('cookies-accepted', 'minimal');
-        removeSplitBeeCookies();
+        void disablePostHog();
         cookieBannerEl.classList.add('hidden');
     });
 
     document.querySelector('.js-cookies-allow-all')?.addEventListener('click', () => {
         localStorage.setItem('cookies-accepted', 'all');
-        splitbee.enableCookie();
+        void enablePostHog();
         cookieBannerEl.classList.add('hidden');
     });
 
     document.querySelector('.js-cookies-manage')?.addEventListener('click', (e) => {
         e.preventDefault();
         localStorage.removeItem('cookies-accepted');
-        removeSplitBeeCookies();
+        void disablePostHog();
         cookieBannerEl.classList.remove('hidden');
     });
 })();

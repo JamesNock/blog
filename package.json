@@ -21,7 +21,7 @@
         "vite": "^7.0"
     },
     "dependencies": {
-        "@splitbee/web": "^0.3.0",
+        "posthog-js": "^1.405.1",
         "prismjs": "^1.29.0"
     },
     "engines": {
