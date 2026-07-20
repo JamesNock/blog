@@ -1,23 +1,36 @@
-<article class="max-w-6xl mx-auto px-3">
+<section class="hero">
+    <div class="site-shell hero__inner">
+        <p class="eyebrow">Software · Leadership · Delivery</p>
+        <h1>Notes from the work <em>behind the work.</em></h1>
+        <p class="hero__intro">Thoughts on software, problem-solving and building effective engineering teams — including the things I learn when reality ignores the tidy diagram.</p>
+    </div>
+</section>
+
+<section class="site-shell py-16 lg:py-24">
+    <header class="section-heading">
+        <div>
+            <p class="eyebrow">The writing</p>
+            <h2>Latest articles.</h2>
+        </div>
+        <p>Practical notes on engineering, leadership and sustainable delivery.</p>
+    </header>
     {{ collection:blog as="posts" paginate="18" sort="date:desc" }}
-        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 py-8">
+        <div class="article-grid">
             {{ posts }}
-                <div class="{{ $first ? 'md:col-span-2' : 'col-span-1' }}">
-                    {{ partial:blog/card :oversized="first" }}
-                </div>
+                {{ partial:blog/card :featured="first" }}
             {{ /posts }}
-        </section>
+        </div>
         {{ paginate }}
             {{ if $prev_page || $next_page }}
-            <section class="flex space-x-8 justify-center text-xl pt-16 font-bold">
+            <nav class="flex gap-8 justify-center pt-16 font-bold" aria-label="Pagination">
                 {{ if $prev_page }}
-                    <a href="{{ $prev_page }}"><span class="squiggle">&larr;</span> Newer articles</a>
+                    <a href="{{ $prev_page }}">&larr; Newer articles</a>
                 {{ /if }}
                 {{ if $next_page }}
-                    <a href="{{ $next_page }}">Older articles <span class="squiggle">&rarr;</span></a>
+                    <a href="{{ $next_page }}">Older articles &rarr;</a>
                 {{ /if }}
-            </section>
+            </nav>
             {{ /if }}
         {{ /paginate }}
     {{ /collection:blog }}
-</article>
+</section>

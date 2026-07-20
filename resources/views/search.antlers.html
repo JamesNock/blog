@@ -1,23 +1,31 @@
-<article class="max-w-5xl mx-auto">
-    <header class="mx-auto max-w-3xl text-center content">
-        <h1 class="text-2xl mb-4">{{ title }}</h1>
-        <p>Here's what we found for "{{ get:q }}".</p>
+<article class="site-shell py-16 lg:py-24">
+    <header class="page-header">
+        <p class="eyebrow">Find an article</p>
+        <h1 class="page-title">{{ title }}</h1>
+        {{ if get:q }}<p>Here's what I found for “{{ get:q }}”.</p>{{ /if }}
+        <form class="search-form" action="/search" role="search">
+            <label class="sr-only" for="search-query">Search articles</label>
+            <input id="search-query" name="q" type="search" value="{{ get:q }}" placeholder="Search the archive…">
+            <button class="pill" type="submit">Search</button>
+        </form>
     </header>
 
-    <section class="max-w-6xl mx-auto py-6">
+    {{ if get:q }}
+    <section class="py-6">
         {{ search:results as="results" }}
             {{ if ! results }}
-                <div class="text-center">
+                <div>
                     <h2 class="font-bold">No results found.</h2>
-                    <p class="my-6"><a href="/" class="underline">Go back to all posts</a></p>
+                    <p class="my-6"><a href="/">Go back to all articles</a></p>
                 </div>
             {{ else }}
-            <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 py-8">
+            <div class="article-grid py-8">
                 {{ results }}
                     {{ partial:blog/card }}
                 {{ /results }}
-            </section>
+            </div>
             {{ /if }}
         {{ /search:results }}
     </section>
+    {{ /if }}
 </article>
