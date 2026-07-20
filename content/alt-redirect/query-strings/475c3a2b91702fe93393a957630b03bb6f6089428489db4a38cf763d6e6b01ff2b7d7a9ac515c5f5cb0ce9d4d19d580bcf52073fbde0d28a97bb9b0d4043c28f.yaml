@@ -1,0 +1,5 @@
+query_string: gclid
+strip: true
+sites:
+  - default
+id: 0b81793197a759b3ab444431eeb5a722

@@ -9,16 +9,16 @@
     ],
     "type": "project",
     "require": {
-        "php": "^8.3",
-        "alt-design/alt-redirect": "^1.6",
+        "php": "^8.4",
+        "alt-design/alt-redirect": "^1.8",
         "guzzlehttp/guzzle": "^7.8",
-        "laravel/framework": "^10.48",
-        "laravel/sanctum": "^3.3",
+        "laravel/framework": "^12.40",
+        "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
-        "mitydigital/feedamic": "^2.5",
+        "mitydigital/feedamic": "^3.0",
         "pecotamic/sitemap": "^1.4",
-        "statamic/cms": "^5.70",
-        "statamic/ssg": "^3.1"
+        "statamic/cms": "^6.25",
+        "statamic/ssg": "^4.1"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.8.1",
@@ -26,8 +26,8 @@
         "laravel/pint": "^1.0",
         "laravel/sail": "^1.30",
         "mockery/mockery": "^1.4.4",
-        "nunomaduro/collision": "^7.0",
-        "phpunit/phpunit": "^10.1",
+        "nunomaduro/collision": "^8.0",
+        "phpunit/phpunit": "^11.5",
         "spatie/laravel-ignition": "^2.0"
     },
     "config": {

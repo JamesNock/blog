@@ -1,48 +1,43 @@
 title: Pages
-sections:
+tabs:
   main:
-    fields:
+    sections:
       -
-        handle: title
-        field:
-          type: text
-          required: true
-      -
-        handle: content
-        field:
-          type: markdown
-          display: Content
-          localizable: true
-      -
-        handle: author
-        field:
-          type: users
-          display: Author
-          default: current
-          localizable: true
-          max_items: 1
-      -
-        handle: template
-        field:
-          type: template
-          display: Template
-          localizable: true
+        fields:
+          -
+            handle: title
+            field:
+              type: text
+              required: true
+          -
+            handle: content
+            field:
+              type: markdown
+              display: Content
+              localizable: true
+          -
+            handle: author
+            field:
+              type: users
+              display: Author
+              default: current
+              localizable: true
+              max_items: 1
+          -
+            handle: template
+            field:
+              type: template
+              display: Template
+              localizable: true
   sidebar:
-    fields:
+    sections:
       -
-        handle: slug
-        field:
-          type: slug
-          required: true
-          localizable: true
-          validate:
-            - 'new \Statamic\Rules\UniqueEntryValue({collection}, {id}, {site})'
-      -
-        handle: parent
-        field:
-          type: entries
-          collections:
-            - pages
-          max_items: 1
-          listable: false
-          localizable: true
+        fields:
+          -
+            handle: slug
+            field:
+              type: slug
+              localizable: true
+              validate:
+                - 'new \Statamic\Rules\UniqueEntryValue({collection}, {id}, {site})'
+              required: true

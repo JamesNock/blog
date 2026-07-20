@@ -1,0 +1,66 @@
+feeds:
+  -
+    sites: all
+    sites_specific: { }
+    title: "James Nock's Blog"
+    handle: blog
+    description: 'Ramblings of Software Engineering Lead, James Nock'
+    routes:
+      atom: /feed/atom
+      atom_view: null
+      rss: /feed
+      rss_view: null
+    collections:
+      - blog
+    taxonomies: { }
+    show: all
+    show_limit: null
+    advanced: false
+    mappings:
+      title_mode: default
+      title: { }
+      summary_mode: default
+      summary: { }
+      content_mode: default
+      content: { }
+      image_mode: default
+      image: { }
+      image_dimensions_mode: default
+      image_width: null
+      image_height: null
+      author_mode: default
+      author_type: entry
+      author_field: null
+      author_name: entry
+      author_email: entry
+    copyright_mode: default
+    copyright: null
+    author_fallback_mode: default
+    author_fallback_name: null
+    author_fallback_email: null
+    scope: null
+    entry_model: MityDigital\Feedamic\Models\FeedamicEntry
+    author_model: MityDigital\Feedamic\Models\FeedamicAuthor
+    alt_url: null
+    type: feed
+    enabled: true
+default_title:
+  - title
+default_summary:
+  - intro
+default_content: [ ]
+default_image_enabled: true
+default_image:
+  - hero_image
+default_image_width: 1280
+default_image_height: 720
+default_author_fallback_name: 'James Nock'
+default_author_fallback_email: null
+default_author_enabled: true
+default_author_type: entry
+default_author_field: author
+default_author_name: '[name]'
+default_author_email: null
+default_copyright: "James Nock's Blog"
+default_entry_model: MityDigital\Feedamic\Models\FeedamicEntry
+default_author_model: MityDigital\Feedamic\Models\FeedamicAuthor
