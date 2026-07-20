@@ -27,7 +27,7 @@
               "description": "{{ $intro | strip_tags | entities }}"
             }
         </script>
-        <link rel="stylesheet" href="{{ mix src='css/styles.css' }}">
+        {{ vite src="resources/css/styles.css|resources/js/site.js" }}
         <link rel="favicon" href="/favicon.ico" />
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     </head>
@@ -37,6 +37,5 @@
             {{ $template_content }}
         </main>
         {{ partial:footer }}
-        <script src="{{ mix src='/js/site.js' }}"></script>
     </body>
 </html>

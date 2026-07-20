@@ -40,9 +40,8 @@ return [
 
     'copy' => [
         public_path('assets') => 'assets',
-        public_path('css') => 'css',
+        public_path('build') => 'build',
         public_path('fonts') => 'fonts',
-        public_path('js') => 'js',
         public_path('favicon.ico') => 'favicon.ico',
     ],
 

@@ -9,14 +9,21 @@
 
 ## Quick Start
 
-The [TailwindCSS](https://tailwindcss.com/) included in this kit is compiled with [PurgeCSS](https://purgecss.com/) to reduce filesize on any unused classes and selectors. If you want to modify anything, just start the watcher to recompile it on the fly.
+The site uses Vite and Tailwind CSS. Install the dependencies and start the Vite development server:
 
 ```
-npm i && npm run watch
+npm install
+npm run dev
 ```
 
-To compile for production again:
+To compile the assets for production:
 
 ```
 npm run production
+```
+
+To compile the assets and generate the static site:
+
+```
+npm run build
 ```

@@ -1,32 +1,30 @@
 {
     "private": true,
     "scripts": {
-        "dev": "mix",
-        "development": "mix",
-        "watch": "mix watch",
-        "watch-poll": "mix watch -- --watch-options-poll=1000",
-        "hot": "mix watch --hot",
+        "dev": "vite",
+        "development": "vite",
+        "watch": "vite",
+        "watch-poll": "vite",
+        "hot": "vite",
         "prod": "npm run production",
-        "production": "mix --production",
-        "build": "php artisan key:generate && APP_URL=https://blog.james-nock.co.uk php please ssg:generate"
+        "production": "vite build",
+        "build": "npm run production && php artisan key:generate && APP_URL=https://blog.james-nock.co.uk php please ssg:generate"
     },
     "devDependencies": {
         "@tailwindcss/typography": "^0.5.1",
         "autoprefixer": "^10.4.0",
-        "cross-env": "^7.0",
-        "css-loader": "^5.2.7",
-        "laravel-mix": "^6.0",
+        "laravel-vite-plugin": "^2.0",
         "postcss": "^8.4.5",
         "postcss-import": "^14.0.1",
         "postcss-nesting": "^13.0.0",
         "tailwindcss": "^3.0.19",
-        "vue-template-compiler": "^2.6.12"
+        "vite": "^7.0"
     },
     "dependencies": {
         "@splitbee/web": "^0.3.0",
         "prismjs": "^1.29.0"
     },
     "engines": {
-        "node": ">=16.20.2"
+        "node": "^20.19.0 || >=22.12.0"
     }
 }
