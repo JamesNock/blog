@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>James Nock</title>
+  <rect width="64" height="64" rx="14" fill="#101b2d"/>
+  <path
+    d="M9 15h18v23c0 8-4 12-11 12-5 0-8-3-8-8M34 49V15l18 34V15"
+    fill="none"
+    stroke="#f5f2ea"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke-width="6"
+  />
+  <circle cx="57" cy="49" r="3" fill="#00ffff"/>
+</svg>
