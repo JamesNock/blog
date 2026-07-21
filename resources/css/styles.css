@@ -10,7 +10,7 @@
     --white: #fffefa;
     --cyan: #5ce5e8;
     --yellow: #ffd84d;
-    --muted: #687180;
+    --muted: #444;
 }
 
 html { scroll-behavior: smooth; }
@@ -75,7 +75,8 @@ a:focus-visible, button:focus-visible, input:focus-visible {
     color: var(--white);
 }
 .hero__inner { padding-block: clamp(4.5rem,10vw,8rem); }
-.eyebrow { margin: 0 0 1.25rem; color: var(--yellow); font-size: .73rem; font-weight: 750; letter-spacing: .15em; text-transform: uppercase; }
+.hero__inner .eyebrow {color:var(--yellow)}
+.eyebrow { margin: 0 0 1.25rem; color: var(--muted); font-size: .73rem; font-weight: 750; letter-spacing: .15em; text-transform: uppercase; }
 .hero h1, .page-title, .article-title { margin: 0; font-weight: 750; letter-spacing: -.055em; line-height: .98; }
 .hero h1 { max-width: 870px; font-size: clamp(3.3rem,8vw,6.5rem); }
 .hero h1 em { color: var(--cyan); font-style: normal; }
@@ -114,6 +115,7 @@ a:focus-visible, button:focus-visible, input:focus-visible {
 .btn-minimal-tertiary { background: transparent; border-color: currentColor; }
 
 .site-footer { background: var(--ink); color: rgba(255,255,255,.68); }
+.site-footer .eyebrow{color: var(--yellow); font-size: .75rem; font-weight: 750; letter-spacing: .035em; text-transform: uppercase; }
 .site-footer__main { display:flex; align-items:end; justify-content:space-between; gap:3rem; padding-block:4rem; }
 .site-footer h2 { max-width:36rem; margin:.5rem 0 0; color:var(--white); font-size:clamp(2.2rem,5vw,4rem); letter-spacing:-.05em; line-height:1; }
 .site-footer__links { display:flex; flex-wrap:wrap; justify-content:flex-end; gap:.75rem 1.25rem; }
