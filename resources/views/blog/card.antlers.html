@@ -1,6 +1,19 @@
 {{ if $hero_image }}
     <a href="{{ $url }}" class="article-card {{ $featured ? 'article-card--featured' : '' }}">
-        <img class="article-card__image" src="{{ glide:hero_image width='1200' height='675' fit='crop_focal' }}" alt="{{ $hero_image:alt }}">
+        <img
+            class="article-card__image"
+            src="{{ glide:hero_image width='768' height='432' fit='crop_focal' format='webp' quality='80' }}"
+            srcset="{{ glide:hero_image width='480' height='270' fit='crop_focal' format='webp' quality='80' }} 480w,
+                    {{ glide:hero_image width='768' height='432' fit='crop_focal' format='webp' quality='80' }} 768w,
+                    {{ glide:hero_image width='1200' height='675' fit='crop_focal' format='webp' quality='80' }} 1200w"
+            sizes="{{ $featured ? '(min-width: 1152px) 648px, (min-width: 768px) 56vw, calc(100vw - 2rem)' : '(min-width: 1152px) 564px, (min-width: 768px) calc(50vw - 2.25rem), calc(100vw - 2rem)' }}"
+            width="768"
+            height="432"
+            alt="{{ $hero_image:alt }}"
+            loading="{{ $featured ? 'eager' : 'lazy' }}"
+            decoding="async"
+            fetchpriority="{{ $featured ? 'high' : 'auto' }}"
+        >
         <div class="article-card__body">
             <time class="article-card__meta" datetime="{{ $date | format('Y-m-d') }}">{{ $date }}</time>
             <h2>{{ $title }}</h2>

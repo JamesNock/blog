@@ -21,8 +21,7 @@
         "vite": "^7.0"
     },
     "dependencies": {
-        "posthog-js": "^1.405.1",
-        "prismjs": "^1.29.0"
+        "posthog-js": "^1.405.1"
     },
     "engines": {
         "node": "^20.19.0 || >=22.12.0"

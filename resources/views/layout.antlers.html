@@ -26,9 +26,8 @@
               "description": "{{ $intro | strip_tags | entities }}"
             }
         </script>
-        {{ vite src="resources/css/styles.css|resources/js/site.js" }}
+        {{ site_assets }}
         <link rel="favicon" href="/favicon.ico" />
-        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     </head>
     <body class="flex flex-col min-h-screen">
         {{ partial:nav }}

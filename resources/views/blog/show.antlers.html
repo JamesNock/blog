@@ -8,7 +8,20 @@
         <time class="article-meta block mt-6" datetime="{{ $date | format('Y-m-d') }}">{{ $date }}</time>
     </header>
 
-    <img class="article-hero" src="{{ $hero_image }}" alt="{{ $hero_image:alt }}">
+    <img
+        class="article-hero"
+        src="{{ glide:hero_image width='1280' height='720' fit='crop_focal' format='webp' quality='82' }}"
+        srcset="{{ glide:hero_image width='640' height='360' fit='crop_focal' format='webp' quality='82' }} 640w,
+                {{ glide:hero_image width='960' height='540' fit='crop_focal' format='webp' quality='82' }} 960w,
+                {{ glide:hero_image width='1280' height='720' fit='crop_focal' format='webp' quality='82' }} 1280w,
+                {{ glide:hero_image width='1920' height='1080' fit='crop_focal' format='webp' quality='82' }} 1920w"
+        sizes="(min-width: 1152px) 1152px, calc(100vw - 2rem)"
+        width="1280"
+        height="720"
+        alt="{{ $hero_image:alt }}"
+        decoding="async"
+        fetchpriority="high"
+    >
 
     <section class="article-content">
         {{ main_content }}
@@ -18,7 +31,16 @@
         <pre class="language-{{ $mode ?? 'php' }} rounded"><code>{{ $code }}</code></pre>
         {{ elseif $type == "image" }}
         <figure>
-            <img src="{{ $image }}" alt="{{ $caption }}">
+            <img
+                src="{{ glide:image width='768' format='webp' quality='82' }}"
+                srcset="{{ glide:image width='480' format='webp' quality='82' }} 480w,
+                        {{ glide:image width='768' format='webp' quality='82' }} 768w,
+                        {{ glide:image width='1200' format='webp' quality='82' }} 1200w"
+                sizes="(min-width: 768px) 768px, calc(100vw - 2rem)"
+                alt="{{ $caption }}"
+                loading="lazy"
+                decoding="async"
+            >
             <figcaption>{{ $caption }}</figcaption>
         </figure>
         {{ /if }}
@@ -28,7 +50,14 @@
     <div class="author-strip">
         <div class="author-strip__person">
             {{ if $author }}
-            <img src="{{ $author:avatar ?? $author:email | gravatar(160) }}" alt="">
+            <img
+                src="{{ $author:avatar ?? $author:email | gravatar(128) }}"
+                width="64"
+                height="64"
+                alt=""
+                loading="lazy"
+                decoding="async"
+            >
             {{ /if }}
             <div>
                 {{ if author }}
