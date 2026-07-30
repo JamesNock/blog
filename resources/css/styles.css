@@ -124,8 +124,6 @@ a:focus-visible, button:focus-visible, input:focus-visible {
 .site-footer__legal { padding-block:1.5rem; display:flex; justify-content:space-between; gap:1rem; border-top:1px solid rgba(255,255,255,.12); font-size:.75rem; }
 .cookie-banner { position:fixed; z-index:50; right:1rem; bottom:1rem; width:min(calc(100% - 2rem),620px); padding:1.25rem; background:var(--white); border:1px solid rgba(16,27,45,.15); border-radius:18px 0 18px 0; box-shadow:0 20px 60px rgba(16,27,45,.2); color:var(--muted); font-size:.8rem; }
 .cookie-banner__actions { display:flex; flex-wrap:wrap; gap:.65rem; margin-top:1rem; }
-.search-form { display:flex; max-width:42rem; margin-top:2rem; gap:.75rem; }
-.search-form input { min-width:0; flex:1; padding:.9rem 1.1rem; background:var(--white); border:1px solid rgba(16,27,45,.2); border-radius:999px; }
 
 @media (min-width: 768px) {
     .article-grid .article-card--featured { grid-column:span 2; display:grid; grid-template-columns:1.35fr 1fr; }
