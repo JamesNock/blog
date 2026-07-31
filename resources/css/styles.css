@@ -104,7 +104,7 @@ a:focus-visible, button:focus-visible, input:focus-visible {
 .article-content { max-width: 48rem; margin-inline: auto; padding-block: 3.5rem; }
 .prose { --tw-prose-body:#273247; --tw-prose-headings:var(--ink); --tw-prose-links:#087d80; --tw-prose-bold:var(--ink); --tw-prose-quotes:var(--ink); --tw-prose-quote-borders:var(--cyan); --tw-prose-code:var(--ink); --tw-prose-bullets:#087d80; max-width:none; font-size:1.08rem; }
 .prose h2, .prose h3 { letter-spacing: -.035em; }
-.prose h2 { margin-top: 2.4em; font-size: 2.2rem; }
+.prose h2 { margin-top: 4rem; font-size: 2.2rem; }
 .prose img { border-radius: 18px 0 18px 0; }
 
 .author-strip { max-width: 48rem; margin: 0 auto 5rem; padding: 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; background: var(--paper-deep); border-radius: 18px 0 18px 0; }
