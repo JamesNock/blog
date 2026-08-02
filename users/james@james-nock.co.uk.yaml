@@ -12,3 +12,4 @@ preferences:
         - author
         - status
         - hero_image
+      view: list
