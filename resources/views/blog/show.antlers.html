@@ -61,7 +61,7 @@
             {{ /if }}
             <div>
                 {{ if author }}
-                <a class="font-bold" href="/authors/{{ $author:handle }}">{{ $author:name }}</a>
+                <span class="font-bold">{{ $author:name }}</span>
                 {{ /if }}
                 <time class="block" datetime="{{ $date | format('Y-m-d') }}">{{ $date }}</time>
             </div>
