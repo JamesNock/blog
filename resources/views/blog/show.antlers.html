@@ -2,11 +2,11 @@
     <header class="article-header">
         <p class="eyebrow">Article</p>
         <h1 class="article-title">{{ $title }}</h1>
+        <time class="article-meta block mt-6 mb-6" datetime="{{ $date | format('Y-m-d') }}">{{ $date }}</time>
         <p id="read-time" class="prose">Read time: {{ main_content | read_time(180) }} min</p>
         {{ if $intro|strip_tags|length }}
         <div class="article-intro">{{ $intro }}</div>
         {{ /if }}
-        <time class="article-meta block mt-6" datetime="{{ $date | format('Y-m-d') }}">{{ $date }}</time>
     </header>
 
     <img
@@ -27,9 +27,11 @@
     <section class="article-content">
         {{ main_content }}
         {{ if $type == "text" }}
-        {{ if {taxonomies_field} contains="deep_dives" }}
+        {{ taxonomies_field }}
+        {{ if handle == "deep_dives" }}
         <div id="toc">{{ $text | toc:2:3 }}</div>
         {{ /if }}
+        {{ /taxonomies_field }}
         <div class="prose">{{ $text | with_ids:2:3 }}</div>
         {{ elseif $type == "code_block" }}
         <pre class="language-{{ $mode ?? 'php' }} rounded"><code>{{ $code }}</code></pre>
