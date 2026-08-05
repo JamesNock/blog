@@ -2,6 +2,7 @@
     <header class="article-header">
         <p class="eyebrow">Article</p>
         <h1 class="article-title">{{ $title }}</h1>
+        <p id="read-time" class="prose">Read time: {{ main_content | read_time(180) }} min</p>
         {{ if $intro|strip_tags|length }}
         <div class="article-intro">{{ $intro }}</div>
         {{ /if }}
@@ -26,7 +27,10 @@
     <section class="article-content">
         {{ main_content }}
         {{ if $type == "text" }}
-        <div class="prose">{{ $text }}</div>
+        {{ if {taxonomies_field} contains="deep_dives" }}
+        <div id="toc">{{ $text | toc:2:3 }}</div>
+        {{ /if }}
+        <div class="prose">{{ $text | with_ids:2:3 }}</div>
         {{ elseif $type == "code_block" }}
         <pre class="language-{{ $mode ?? 'php' }} rounded"><code>{{ $code }}</code></pre>
         {{ elseif $type == "image" }}

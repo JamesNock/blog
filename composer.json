@@ -11,6 +11,7 @@
     "require": {
         "php": "^8.4",
         "alt-design/alt-redirect": "^1.8",
+        "doefom/statamic-table-of-contents": "^2.0",
         "guzzlehttp/guzzle": "^7.8",
         "laravel/framework": "^12.40",
         "laravel/sanctum": "^4.0",

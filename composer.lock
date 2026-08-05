@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8e4be614066548fb4c40ed609e0ddaf8",
+    "content-hash": "769a56a8c4163808ee01d2dae7d333b3",
     "packages": [
         {
             "name": "ajthinking/archetype",
@@ -721,6 +721,54 @@
                 }
             ],
             "time": "2024-02-05T11:56:58+00:00"
+        },
+        {
+            "name": "doefom/statamic-table-of-contents",
+            "version": "v2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doefom/statamic-table-of-contents.git",
+                "reference": "431e94c5c95ba8847bc46d424915ed0c3abe1be6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doefom/statamic-table-of-contents/zipball/431e94c5c95ba8847bc46d424915ed0c3abe1be6",
+                "reference": "431e94c5c95ba8847bc46d424915ed0c3abe1be6",
+                "shasum": ""
+            },
+            "require": {
+                "ext-dom": "*",
+                "statamic/cms": "^5.0 || ^6.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^9.0 || ^10.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Doefom\\StatamicTableOfContents\\ServiceProvider"
+                    ]
+                },
+                "statamic": {
+                    "name": "Statamic Table Of Contents",
+                    "description": "Automatically generate a table of contents from a bard or markdown field anywhere in your antlers templates."
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Doefom\\StatamicTableOfContents\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "support": {
+                "issues": "https://github.com/doefom/statamic-table-of-contents/issues",
+                "source": "https://github.com/doefom/statamic-table-of-contents/tree/v2.0.0"
+            },
+            "time": "2026-02-19T07:35:05+00:00"
         },
         {
             "name": "dragonmantank/cron-expression",
